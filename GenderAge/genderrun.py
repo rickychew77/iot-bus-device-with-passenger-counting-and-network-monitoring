@@ -18,7 +18,10 @@ def execute_graph(blob,img):
 	devices = mvnc.EnumerateDevices()
 	if len(devices) == 0:
 		print('No devices found')
-		quit()
+		time.sleep(5)
+		devices = mvnc.EnumerateDevices()
+		if len(devices) != 0:
+			break
 	device = mvnc.Device(devices[0])
 	device.OpenDevice()
 	opt = device.GetDeviceOption(mvnc.DeviceOption.OPTIMISATION_LIST)
